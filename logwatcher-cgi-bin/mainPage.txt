@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<!-- Luminator generated logwatcher page 
+1/30 bapliam@us.ibm.com
+test page -->
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Logfile Query Page</title>
+
+<!-- timeline setup-->
+<style>
+.lbframe
+{
+   border-width: 0px;
+   border-style: solid;
+   border-color: white;
+   background-color: #aabb66;
+   position: absolute;
+   left: 3px;
+   height: 30px;
+   top: 4px;
+   width: 90px;
+   padding: 0px;
+   z-index: 51;
+}
+.ctag
+{
+   white-space: nowrap;
+}
+#status
+{
+   position: absolute;
+   top: 550px;
+   color: black;
+   font-size: 10px;
+}
+body
+{
+	background-color: #f6f6c9;
+	background-color: #ffffee;
+	padding: 0px;
+	margin: 0px;
+	overflow-x: hidden;
+}
+#nameplate
+{
+	position: relative;
+	height: 15px;
+	background-color: #770088;
+	color: white;
+}
+.nameplateTxt
+{
+	position: relative;
+	font-family: "Verdana";
+	font-size: 10px;
+	left: 60px;
+}
+#menuBtnId
+{
+	position: absolute;
+	left: 900px;
+	top: 0px;
+	height: 15px;
+	width: 180px;
+	background: url(http://%%hostname%%:/logwatcher/menu.png) no-repeat left top;
+}
+.paneTitle
+{
+	position: relative;
+	left: 40px;
+	margin-top: 15px;
+	margin-bottom: 3px;
+	margin-right: 0px;
+	margin-left: 0px;
+	font-family: "Verdana";
+	font-size: 60%;
+}
+.top
+{
+	position: absolute;
+	z-index: 1;
+}
+.btn
+{
+	position: relative;
+	left: 0px;
+	top: 0px;
+	margin: 5px;
+	margin-right: 15px;
+	width: 180px;
+	height: 40px;
+	color: #ddccee;
+	background-color: white;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #ddccee
+	border-color: #997799;
+	color: #997799;
+}
+.btn:hover
+{
+	border-color: #997799;
+	color: #997799;
+}
+.linkTxt
+{
+	position: relative;
+	left: 20px;
+	top: 10px;
+}
+#helpBtn img
+{
+	position: relative;
+	top: 4px;
+}
+.filepathpane
+{
+	position: absolute;
+	top: 35px;
+	left: 5px;
+	width: 110px;
+	height: 45px;
+	margin: 0px;
+	padding: 0px;
+	border-style: solid;
+	border-width: 0px;
+	border-color: grey;
+	background-color: #f3eeee;
+	background-color: white;
+	z-index: 48;
+}
+.filepath
+{
+	color: #660077;
+	position: absolute; 
+	height: 15px;
+	width: auto;
+	padding-left: 2px;
+	padding-top: 1px;
+	padding-right: 2px;
+	padding-bottom: 1px;
+	margin: 0px;
+	font-size: 12px;
+	font-family: "Lucida Sans Unicode";
+	background-color: #f3eeee;
+	background-color: white;
+	z-index: 52;
+}
+.filepathSel
+{
+	color: #660077;
+	position: absolute; 
+	height: 15px;
+	width: auto;
+	padding-left: 2px;
+	padding-top: 1px;
+	padding-right: 2px;
+	padding-bottom: 1px;
+	margin: 0px;
+	font-size: 12px;
+	font-family: "Lucida Sans Unicode";
+	font-weight: bold;
+	background-color: #f3eeee;
+	z-index: 52;
+}
+
+.kioskArea{
+	position: relative;
+	left: 0px;
+}
+.kioskPane
+{
+	position: relative;
+	left: 10px;
+	width: 1105px;
+	padding: 5px;
+	background-color: white;
+	border-style: solid:
+	border-color: #770088;
+	border-color: #efefef;
+	border-width: 2px;
+}
+.kioskTLPane
+{
+	position: relative;
+	left: 10px;
+	width: 100px;
+	padding: 5px;	
+	background-color: white;
+	border-style: solid:
+	border-color: #770088;
+	border-color: #efefef;
+	border-width: 2px;
+}
+.thumbnailPane
+{
+	position: relative;
+	left: 10px;
+	width: 1047px;
+	height: 240px;
+	padding: 0px;
+	border-style: solid;
+	border-color: #770088;
+	border-color: #efefef;
+	border-width: 2px;
+	background-color: white;
+	overflow: auto;
+}
+#thumbnailInset
+{
+	position: relative;
+	width: 10000px;
+	left: 5px;
+	top: 5px;
+}
+#currentThumbnail
+{
+	position: relative;
+	margin-top: 15px;
+	margin-bottom: 3px;
+	margin-right: 0px;
+	margin-left: 0px;
+}
+.queryStatsArea
+{
+	position: relative;
+	width: 1060px;
+	height: 120px;
+	margin-top: -4px;
+}
+.queryPane
+{
+	height: 240px;
+	width: 480px;
+	padding: 5px;
+	background-color: white;
+	border-style: solid;
+	border-color: #770088;
+	border-color: #efefef;
+	border-width: 2px;
+	margin-left: 10px;
+	overflow: auto;
+}
+#outputArea
+{
+	position: absolute;
+	left: 520px;
+	top: 381px;
+}
+.outputPane
+{
+	width: 1035px;
+	height: 240px;
+	padding: 5px;
+	background-color: white;
+	border-style: solid;
+	border-color: #770088;
+	border-color: #efefef;
+	border-width: 2px;
+	overflow: auto;
+}
+.clArea
+{
+	position: relative;
+	width: 1060px;
+	height: 120px;
+	margin-top: -4px;
+}
+
+.clPane
+{
+	width: 1100px;
+	height: 20px;
+	padding: 5px;
+	color: #000000;
+	background-color: #736677;
+	background-color: #9999aa;
+	background-color: white;
+	border-style: solid;
+	border-color: #770088;
+	border-color: #efefef;
+	border-width: 2px;
+	margin-left: 10px;
+}
+.spacer
+{
+	width: 10px;
+	height: 15px;
+	color: white;
+}
+.dull
+{
+	color: #660077;
+	padding: 0px;
+	padding-left: 10px;
+	border-style: solid;
+	border-width: 0px;
+	border-color: white;
+	font-size: 12px;
+	font-family: "Lucida Sans Unicode";
+}
+.sel
+{
+	color: #660077;
+	padding: 0px;
+	padding-left: 10px;
+	border-style: solid;
+	border-width: 0px;
+	border-color: white;
+	font-size: 12px;
+	font-family: "Lucida Sans Unicode";
+	font-weight: bold;
+}
+.dull img, .sel img
+{
+	position: relative;
+	top: 6px;
+	left: 15px;
+}
+#linksPane
+{
+	display: none;
+	position: absolute;
+	top: 1px;
+	left: 902px;
+	width: 192px;
+	height: 148px;
+	padding: 0px;
+	background-color: #f3f0ff;
+	border-style: solid;
+	border-color: #770088;
+	border-color: #efefef;
+	border-width: 2px;
+	z-index: 56;
+}
+.warn
+{
+	color: red;
+}
+.dlg
+{
+	display: none;
+	position: relative;
+	left: 400px;
+	top: 170px;
+	width: 400px;
+	height: 280px;
+	background-color: white;
+	border-style: solid;
+	border-width: 5px;
+	border-color: #f3f0ff;
+	z-index: 55;
+}
+.dlgTitle
+{
+	position: relative;
+	color: white;
+	font-size: 18px;
+	font-family: "Verdana";
+	font-weight: bold;
+	background-color: #770088;
+	width: 400px;
+	height: 30px;
+	z-index: 55;
+}
+.dlgTitleTxt
+{
+	position: relative;
+	left: 130px;
+	top: 3px;
+}
+.dlgContent
+{
+	position: relative;
+	left: 60px;
+	top: 20px;
+}
+#filtFormId
+{
+	position: relative;
+}
+#screenBlur
+{
+	position: fixed;
+	display: none;
+	top: 15px;
+	left: 0px;
+	right: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: #545400;
+	opacity: 0.75;
+	z-index: 8;
+}
+</style>
+<script src="/logwatcher/JS/timeline.js" type="text/javascript"></script>
+<script src="/logwatcher/JS/automatedTests.js" type="text/javascript"></script>
+<script>
+function timelineInit(){
+
+
+	//timelineData = [{"filename":"/IBM/WebSphere/AppServer/profiles/appsrv01/SystemOut.log","keywordGrps":[{"keywordId":1,"items":[{"bgn":{"yr":1962,"mo":6},"pos":12345},{"bgn":{"yr":1963,"mo":5},"end":{"yr":1963,"mo":6},"pos":54321}]},{"keywordId":2,"items":[{"bgn":{"yr":1965,"mo":9},"pos":33333}]}]},{"filename":"/IBM/WebSphere/AppServer/profiles/appsrv01/SystemErr.log","keywordGrps":[{"keywordId":1,"items":[{"bgn":{"yr":1962,"mo":6},"pos":12345},{"bgn":{"yr":1963,"mo":5},"end":{"yr":1963,"mo":6},"pos":54321}]},{"keywordId":2,"items":[{"bgn":{"yr":1965,"mo":9},"pos":33333}]}]},{"filename":"/IBM/WebSphere/AppServer/profiles/appsrv02/SystemOut.log","keywordGrps":[{"keywordId":1,"items":[{"bgn":{"yr":1962,"mo":6},"pos":12345},{"bgn":{"yr":1963,"mo":5},"end":{"yr":1963,"mo":6},"pos":54321}]},{"keywordId":2,"items":[{"bgn":{"yr":1965,"mo":9},"pos":33333}]}]}];
+
+
+	timelineData = startData.workableData.timelineData;
+
+	timelineHint = startData.workableData.timelineHint;
+	if(timelineHint.length < 1)timelineHint = {"yr":1962,"mo":6};
+
+	keywordColors = startData.workableData.keywordColors;
+	if(keywordColors.length < 1)keywordColors = ["red","blue","#ffffaa","purple","black"];
+
+	if(window.addEventListener){
+		//window.addEventListener( 'mousemove', mouseMove, false );
+		window.addEventListener( 'mousewheel', mouseWheel, false );
+		window.addEventListener( 'mousedown', mouseDown, false );
+		window.addEventListener( 'mouseup', mouseUp, false );
+		window.addEventListener( 'keydown', keyPress, false);
+		
+		
+		var mousewheelevt=(/Firefox/i.test(navigator.userAgent))? "DOMMouseScroll" : "mousewheel" //FF doesn't recognize mousewheel as of FF3.x
+		if (document.attachEvent) //if IE (and Opera depending on user setting)
+			document.attachEvent("on"+mousewheelevt, mouseWheel);
+		else if (document.addEventListener) //WC3 browsers
+			document.addEventListener(mousewheelevt, mouseWheel, false)
+	}
+	else{ //for IE
+		var e = document.getElementById('wfrm');
+		alert('hitting IE specific');
+		e.attachEvent('onmousewheel',mouseWheel);
+	}
+
+	if(timelineData.length < 1){
+		var tl
+		var statPane = document.getElementById('rslt');
+		statPane.innerHTML = "No log data is available. Please see troubleshooting steps in readme.html";
+		return;
+	}
+
+	initializeBars();
+
+	var tlFrm = document.getElementById('wfrm');
+	tlFrm.addEventListener('mousemove', mouseMove, false);
+	tlFrm.addEventListener('click',onTLClick,false);
+	mousePos[0] = -1;
+	mousePos[1] = -1;
+
+	// parse eventData and determine time frame
+
+	var eventBuf = [];
+	prepEventData(eventBuf);
+
+	startBufTime = new datetime("",0,0,0,0,0,0,0,"");
+	startBufTime.setTime(eventBuf[0]);
+	endBufTime = new datetime("",0,0,0,0,0,0,0,"");
+	endBufTime.setTime(eventBuf[1]);
+
+	prepTimeframe();
+
+	//position and format visible lines
+	allocateAndSetHorizontalPosForTimeline();
+
+	//position event items
+	loadFilenamesAndRowElementsFromTimelineData();
+	updatePreciseTimelinePositions();
+	assignXPositionsToEvents(true);
+
+	//size the vertical bars and pane
+	setVerticalPosForTimeline();
+
+	//verify data and postion of events
+	//verifyEventDataAndPositions();
+}
+
+function keyPress(e){
+	if(document.activeElement.id == 'queryPaneId')return;
+	var evtHandled = false;
+	if(e.keyCode == 27){
+		closeLinksPane();	
+		evtHandled = true;
+	}
+	if(e.keyCode == 38){
+		zoom(1,mousePos[0] - 15);
+		evtHandled = true;
+	}
+	if(e.keyCode == 40){
+		zoom(-1,mousePos[0] - 15);
+		evtHandled = true;
+	}
+	if(evtHandled){
+		if(e.preventDefault)e.preventDefault();
+		else e.returnValue = false;    
+	}
+}
+
+function mouseMove(e){
+	//var statusPane = document.getElementById('rslt');
+	//statusPane.innerHTML = mousePos[0] + '/' + mousePos[1] + 'scrnPosBottom: ' + scrnPosBottomTLPane;	
+	if(mousePos[0] == -1 || isMouseBtnDown == 0){
+		mousePos[0] = e.clientX;
+		mousePos[1] = e.clientY;
+		return;
+	}
+	if(basicDisplayMode != "timeline")return;
+	if(mousePos[0] > curPaneWidth || mousePos[0] < 10 || mousePos[1] < 30 || mousePos[1] > scrnPosBottomTLPane)
+		return;
+	var level = zoomDex;
+	var xpos = 0;
+	var ob = null;
+	var dif = e.clientX - mousePos[0];
+	mousePos[0] = e.clientX;
+	mousePos[1] = e.clientY;
+	for(var i = lowerBarDex; i <= upperBarDex; i++){
+		barPositions[i] = xpos = barPositions[i] + dif;
+		ob = bars[i];
+		ob.style.left = xpos + "px";
+		barTags[i].style.left = (xpos - 3) + "px";
+		var dstr = "block";
+		if(xpos < frameLPad || xpos > frameRSide){
+			dstr = "none";
+		}
+		ob.style.display = dstr;
+		var ldstr = dstr;
+		if(xpos > (frameRSide - 20))ldstr = "none";
+		barTags[i].style.display = ldstr;
+		if(ob.syncParent !== null){
+			repositionAncestors(ob.syncParent,xpos,dstr);
+		}
+		if(ob.contextTag !== null){
+			ob.contextTag.style.left = xpos + "px";
+			ob.contextTag.style.display = dstr;
+			if(xpos > (frameRSide - 50))ob.contextTag.style.display = "none";
+		}
+	}	
+	
+	//detect need to reassign bars to cover needed buffer positions
+	if(barPositions[upperBarDex] < frameRSide)shiftAndReplaceAttributes(false);
+	else {
+		if(barPositions[0] > 0){
+			shiftAndReplaceAttributes(true);
+		}
+	}
+
+	//adjust horizontal position of event items without calculating precise "days" position
+	for(var i = 0; i < timelineData.length; i++){
+		var fileGrp = timelineData[i];
+		for(var j = 0; j < fileGrp.keywordGrps.length; j++){
+			var kwdGrp = fileGrp.keywordGrps[j];
+			for(var k = 0; k < kwdGrp.items.length; k++){
+				evt = kwdGrp.items[k].domEventOb;
+				evt.xpos += dif;
+				evt.style.left = (evt.xpos - 5) + "px";
+				if(evt.xpos < frameLPad || evt.xpos > frameRSide){
+					evt.style.display = "none";
+				}
+				else evt.style.display = "block";
+			}
+		}
+	}	
+
+	//set flag that "days" positions are stale
+	hrzScrollAlert = true;
+
+	e.preventDefault();
+	return false;
+}
+
+function mouseDown(e){
+	isMouseBtnDown = 1;
+	if(basicDisplayMode != "timeline")return;
+}
+
+function onTLClick(e){
+	if(mousePos[0] < curPaneWidth && mousePos[0] > 10 && mousePos[1] > 30 && mousePos[1] < scrnPosBottomTLPane){
+		//adjust horizontal position of event items
+		for(var i = 0; i < timelineData.length; i++){
+			var fileGrp = timelineData[i];
+			var rect = fileGrp.fileGrpPanel.getBoundingClientRect();
+			if(isInsideRect(rect,e.clientX,e.clientY) == false)continue;
+			for(var j = 0; j < fileGrp.keywordGrps.length; j++){
+				var kwdGrp = fileGrp.keywordGrps[j];
+				if(e.clientY < ((rect.top + (j * 10)) + 25) || e.clientY > (rect.top + ((j + 1) * 10) + 25))continue;				
+				for(var k = 0; k < kwdGrp.items.length; k++){
+					evt = kwdGrp.items[k].domEventOb;var items = null;
+					var r = evt.getBoundingClientRect();
+					if(e.clientX >= r.left && e.clientX < r.right){
+						onEventClick(fileGrp.filename,kwdGrp.items[k].pos,evt);
+						e.preventDefault();
+						return false;
+					}
+				}
+			}
+		}			
+		var query = document.getElementById('clPaneId');
+		if(query.innerHTML.indexOf('verify') == 0){
+			query.innerHTML += ' ' + getDateFromXPos(mousePos[0] - (frameLSide + frameLPad)); 
+		}
+		e.preventDefault();
+		return false;
+	}
+}
+
+function onEventClick(file,filePos,eventOb){
+	var dateStr = eventOb.bgnDatetime.getTimeString();
+	var outputPane = document.getElementById('rslt');
+	outputPane.innerHTML = 'event item clicked: {\"filename\": \"' + file + '\",\"file-position\":' + filePos + '\",\"time\":\"' + dateStr + '\"}';	
+	var data = "viewFile=true&myfilename=" + file + "&fileOffset=" + filePos;
+	cgiMod = "eventImpl.cgi";
+	currentFile = file;
+	doXmlAction(data);	
+}
+
+function mouseUp(e){
+	isMouseBtnDown = 0;
+	e.preventDefault();
+	return false;
+}
+
+function isInsideRect(r,hpos,vpos){
+	if(r.left <= hpos && r.right >=hpos && r.top <= vpos && r.bottom >= vpos)return true;
+	return false;
+}
+
+function mouseWheel(e){
+	var delta = 0;
+	var w = 0;
+	if(basicDisplayMode != "timeline")return;	
+	if(mousePos[0] > curPaneWidth || mousePos[0] < 10 || mousePos[1] < 30 || mousePos[1] > scrnPosBottomTLPane)
+		return;
+	
+	if(!e) /* For IE. */
+                e = window.event;
+        if(e.wheelDelta) { /* IE/Opera. */
+                delta = e.wheelDelta/120;
+        } else if (e.detail) { /** Mozilla case. */
+                /** In Mozilla, sign of delta is different than in IE.
+                 * Also, delta is multiple of 3.
+                 */
+                delta = -e.detail/3;
+        }
+        /** If delta is nonzero, handle it.
+         * Basically, delta is now positive if wheel was scrolled up,
+         * and negative, if wheel was scrolled down.
+         */
+        if (delta > 0.0){
+		//alert("wheel down - get closer in");
+		//for now guess at a maginitude/speed, 
+		//at some point take midpoint of screen and zoom into or away from it
+		w = 3;
+	}
+	else {
+		//alert("wheel up - back away");
+		//at some point take midpoint of screen and zoom into or away from it
+		w = -3;
+	}
+
+	//zoom(w,e.clientX - 15);
+	zoom(w,mousePos[0] - 15);
+
+        /** Prevent default actions caused by mouse wheel.
+         * That might be ugly, but we handle scrolls somehow
+         * anyway, so don't bother here..
+         */
+        if (e.preventDefault)
+                e.preventDefault();
+	e.returnValue = false;    
+	return false;
+}
+
+var fileData = [];
+%%batchJSDecls%%
+var startData = %%startData%%;
+var maxDotPlotWidth = 500;
+var curPaneWidth = 1155; //default should change based on screen size
+var scrnPosBottomTLPane = 120; //updated after timeline data is loaded
+var titleBarHt = 15;
+var cgiMod = "errorMod";
+var testArgs = "";
+var imageDir = "/logwatcher/images/";
+var currentSel = {}; 
+var currentFile = "";
+var currentCmd = "";
+var plotCount = 0;
+var displayHttpResponse = false;
+var showingLinks = 0;
+var basicDisplayMode = "timeline";//options are timeline | charstream
+function init(){
+
+	var tbarElem = document.getElementById('nameplate');
+	tbarElem.style.height = titleBarHt + "px";
+
+	fileData = '%%dotPlotSlots%%';
+
+	//setup timeline area
+        timelineInit();
+	
+	//setup charstream area
+	//if(curFileNum === 0)curFileNum = 1;
+	var kiosk = document.getElementById("kioskId");
+	kiosk.style.width = (window.innerWidth - 55) + "px"; //55 clears a right scrollbar
+	kiosk.style.border = "2px solid #770088";
+	kiosk.style.border = "2px solid #efefef";
+	var fdob = JSON.parse(fileData);
+	for(var i=0; i<fdob.fileArr.length; i++){
+		var dpel = document.createElement('div');
+		dpel.setAttribute("id","dp" + i);
+		dpel.style.width = window.innerWidth + "px";
+		var htmlStr = fdob.fileArr[i].name;
+		var len = htmlStr.length;
+		if(len > 20)htmlStr = "..." + htmlStr.substring(19,len);
+		htmlStr += "<img src=\"" + imageDir + "dotPlot" + (i+1).toString() + ".png\"/>";
+		dpel.innerHTML = htmlStr;
+		if(curFileNum===(i + 1)){
+			currentFile = fdob.fileArr[i].name;
+			dpel.className="sel";
+			currentSel = dpel;
+		}
+		else dpel.className="dull";
+		dpel.slotLength =(maxDotPlotWidth * fdob.fileArr[i].length )/ maxFileLen;
+		dpel.index = i;
+		dpel.addEventListener("click", function(event){
+			var rect = this.getBoundingClientRect();
+			var imgRect = this.childNodes[1].getBoundingClientRect();
+			var x = -1;
+			///if(event.clientX > this.childNodes[1].offsetLeft)
+			if(event.clientX > (imgRect.left + 10))
+				x = (event.clientX - (imgRect.left + 10)); 
+			var y = 0;
+			if(event.clientY > imgRect.top) 
+				y = event.clientY - imgRect.top; 
+			cgiMod = "dotPlotImpl.cgi";
+			if(currentSel !== null)currentSel.className = "dull";
+			currentSel = this;
+			this.className = "sel";
+			curFileNum = this.index + 1;
+			currentFile = fdob.fileArr[this.index].name;
+			if(x > -1){
+				var action = "viewFile=true";
+				var file = "&myfilename=" + fdob.fileArr[this.index].name;
+				var offset = "&fileOffset=" + Math.round(((x * fdob.fileArr[this.index].length)/this.slotLength)).toString();
+				var data = action + file + offset;
+				doXmlAction(data);
+			}
+		});
+		kiosk.appendChild(dpel);
+	}
+
+	var tlArea = document.getElementById('tlArea');//timeline pane
+	var csArea = document.getElementById('csArea');//character stream pane
+	if(basicDisplayMode==='timeline'){
+		tlArea.style.display = "block";
+		if(timelineData.length < 1)tlArea.style.display = "none";
+		csArea.style.display = "none";
+	}
+	else{
+		tlArea.style.display = "none";
+		csArea.style.display = "block";
+		if(timelineData.length < 1)csArea.style.display = "none";
+	}
+	alignThumbnailArea();
+
+	var elem = document.getElementById('rslt');
+	if(elem && startData.workableData.statistics !== undefined && startData.workableData.status !== undefined){
+		elem.innerHTML = elem.innerHTML + " " + startData.workableData.statistics + ": " + startData.workableData.status;
+	}
+
+	loadImageBlocks(staleBlockCount);
+	
+	var qP = document.getElementById("queryPaneId");
+	qP.addEventListener("keypress",onQueryPaneKeypress,false);
+	var thP = document.getElementById("thumbnailInset");
+	thP.addEventListener("click",onThumbnailClick,false);
+	var cN = document.getElementById('currentThumbnail');
+	cN.innerHTML = "<div class=\"paneTitle\">thumbnail: <i>" + currentFile + "</i></div>";
+	var cP = document.getElementById('clPaneId');
+	cP.addEventListener("keypress",onCLPaneKeypress,false);
+	
+	var tlRect = tlArea.getBoundingClientRect();
+	curPaneWidth = tlRect.right;
+	scrnPosBottomTLPane = tlRect.bottom;
+
+	var btnElm = document.getElementById('viewBtn');
+	btnElm.addEventListener("click",nextViewMode,false);
+	btnElm = document.getElementById("filterBtn");
+	btnElm.addEventListener("click",editFilter,false);
+	btnElm = document.getElementById("helpBtn");
+	btnElm.addEventListener("click",showHelp,false);
+	btnElm = document.getElementById("dlgDoneBtnId");
+	btnElm.addEventListener("click",onCloseFilterDlg,false);
+	btnElm = document.getElementById("dlgEscBtnId");
+	btnElm.addEventListener("click",onCancelFilterDlg,false);
+	btnElm = document.getElementById("menuBtnId");
+	btnElm.addEventListener("click",onMenuBtn,false);
+}
+
+function onMenuBtn(event){
+	if(showingLinks === 1)closeLinksPane();
+	else openLinksPane();
+}
+
+function alignThumbnailArea(){
+	var cmd = document.getElementById('queryArea');
+	var out = document.getElementById('outputArea');
+	//out.style.top = cmd.getBoundingClientRect().top + "px";
+	out.style.top = ((cmd.offsetTop - cmd.scrollTop) - titleBarHt) + "px";
+}
+	
+function nextViewMode(){
+	closeLinksPane();
+	var tl = document.getElementById('tlArea');
+	var cs = document.getElementById('csArea');
+	if(basicDisplayMode == "timeline"){
+		basicDisplayMode = "charstream";
+		tl.style.display = "none";
+		cs.style.display = "block";
+		var elm = document.getElementById('lt0');
+		elm.innerHTML = "show timeline";
+		alignThumbnailArea();
+		return;
+	}
+	if(basicDisplayMode == "charstream"){
+		basicDisplayMode = "timeline";
+		tl.style.display = "block";
+		cs.style.display = "none";
+		var elm = document.getElementById('lt0');
+		elm.innerHTML = "show character stream";
+		alignThumbnailArea();
+		return;
+	}
+}
+
+function openLinksPane(){
+	var pane = document.getElementById("linksPane");
+	if(pane === null)return;
+	pane.style.display = "block";
+	showingLinks = 1;
+}
+
+function closeLinksPane(){
+	var pane = document.getElementById("linksPane");
+	if(pane === null)return;
+	pane.style.display = "none";
+	showingLinks = 0;
+}
+
+function editFilter(event){
+	closeLinksPane();
+	var e = document.getElementById("screenBlur");
+	e.style.display = "block";
+	e = document.getElementById("filterDlgId");
+	e.style.display = "block";
+	var arr = fileFilter.split(",");
+	var j = 0;
+	var f = document.getElementById("filterFormId");
+	for(var i=0;i<8;i++){
+		if(j>= arr.length)break;
+		if(f[i].value === arr[j]){
+			f[i].checked = true;
+			j++;
+		}
+	}
+	var x = document.getElementById("excl");
+	x.value = fileXFilter; 
+}
+
+function onCloseFilterDlg(event){
+	var e = document.getElementById("screenBlur");
+	e.style.display = "none";
+	e = document.getElementById("filterDlgId");
+	e.style.display = "none";
+	var j = 0;
+	var first = 1;
+	fileFilter = "";
+	var f = document.getElementById("filterFormId");
+	for(var i=0; i<7; i++){
+		if(f[i].checked === true){
+			if(first === 1){
+				first = 0;
+			}
+			else fileFilter += ",";
+			fileFilter += f[i].value;
+		}
+	}
+	var x = document.getElementById("excl");
+	//if the filter does not include the currentFile, select no current file
+	if(currentFile != null){
+		var arr = fileFilter.split(".");
+		var ext = arr[arr.length - 1];
+		var el = ext.length;
+		var fl = currentFile.length;
+		var losingCurFile = 0;
+		if(fileXFilter !== x.value)losingCurFile = 1;
+        	if(fl >= el && el > 0){
+			if(currentFile.substring(fl - el,fl)===ext)losingCurFile = 1;
+		}
+		if(losingCurFile === 1){
+			currentFile = "";
+			if(currentSel!=null)currentSel.className = "dull";
+			currentSel = null;
+		}
+	}
+	fileXFilter = x.value;
+        currentCmd = "setFilter";
+        cgiMod = "cmdImpl.cgi";
+	doXmlAction("cmd=setFilter&filter=" + fileFilter + "&xfilter=" + fileXFilter);  
+}
+
+function onCancelFilterDlg(event){
+	var e = document.getElementById("screenBlur");
+	e.style.display = "none";
+	e = document.getElementById("filterDlgId");
+	e.style.display = "none";
+}
+
+function showHelp(event){
+	closeLinksPane();
+	window.open("http://" + window.location.host + "/logwatcher/readme.html");
+}
+
+function onQueryPaneKeypress(event){
+	if(((event.keyCode == 13) || (event.keyCode == 10)) && event.ctrlKey){
+		var s = this.innerHTML.trim();
+		if(s.indexOf("plot") == 0 || s.indexOf("frame") == 0){
+			cgiMod = "queryImpl.cgi";
+			var query = "";
+			query = replaceTagsWithNewlinesTallyPlotStmts(s);
+			doXmlAction("query=" + query.trim() + "&currentFile=" + currentFile + "&maxFileLen=" + maxFileLen.toString() + "&maxDotPlotWd" + maxDotPlotWidth.toString());
+		}
+		else processCommandString(s);
+	}
+}
+
+function processCommandString(cmdStr){
+	if(cmdStr.indexOf("dev help")==0){
+		loadHelp();
+		return;
+	}
+	if(cmdStr.indexOf("test") == 0){
+		cgiMod = "cmdImpl.cgi";
+		var s = "test=";
+		if(cmdStr.indexOf("cgi query") > -1){
+			s += "cgiQuery";
+			s += "&currentFile=" + currentFile.toString();
+		}
+		if(cmdStr.indexOf("cgi dotPlot") > -1){
+			s += "cgiDotPlot";
+			cgiMod = "dotPlotImpl.cgi";
+		}
+		if(cmdStr.indexOf("java") > -1)s += "java";
+		if(cmdStr.indexOf("to disk") > -1)s += "toDisk";	
+		if(cmdStr.indexOf("from disk") > -1)s += "fromDisk";
+		if(cmdStr.indexOf("from image dir") > -1)s += "fromImgDir";
+		if(cmdStr.indexOf("to image dir") > -1)s += "toImgDir";
+		if(cmdStr.indexOf("from tmp dir") > -1)s += "fromTmpDir";
+		if(cmdStr.indexOf("open") > -1){
+			s += "openFile";
+			s += "&testFile=" + cmdStr.substring(cmdStr.indexOf("open") + 5).trim();
+			if(cmdStr.indexOf("<br") > -1){
+				alert("Please try again without newlines");
+				return;
+			}
+		}
+		if(cmdStr.indexOf("regressions") > -1)s += "regressions";
+		testArgs = s;
+		doXmlAction(s);
+		return;
+	}
+	currentCmd = "";
+	if(cmdStr.indexOf("clear") == 0)currentCmd = "clear";
+	if(cmdStr.indexOf("done") == 0){
+		if(confirm("This command will delete all logfile-specific data, leaving only a basic installation. Do you do wish to continue?")==false)return;
+		currentCmd = "done";
+	}
+	if(cmdStr.indexOf("update") == 0)currentCmd = "update";
+	if(cmdStr.indexOf("verify") == 0){
+		currentCmd = "verify&sampleData=" + encodeURIComponent("HERE I AM!! SEE ME!!!");
+	}
+	if(currentCmd.length > 0){
+		cgiMod = "cmdImpl.cgi";
+		doXmlAction("cmd=" + currentCmd);
+		return;
+	}
+	var result = document.getElementById('rslt');
+	result.innerHTML = "Command not recognized. See help for supported commands, or try the 'dev help' command";
+}
+
+function replaceTagsWithNewlinesTallyPlotStmts(inputStr){
+	var outStr = "";
+	//if we try to use the actual greater than or less than symbols the page doesn't display correctly!
+	var lt = String.fromCharCode(60);
+	var gt = String.fromCharCode(62);
+	var gtlt = gt + lt;
+	var ltgt = lt + gt;
+	var re1 = new RegExp(lt + "[^" + ltgt + "]*" + gt,"g");    
+	var re2 = new RegExp(gtlt,"g");
+	var re3 = new RegExp(ltgt,"g");
+	outStr = inputStr.replace(re1,ltgt);
+	outStr = outStr.replace(re2,"");
+	reducedQueryStringArray = outStr.split(ltgt);
+	plotCount = countPlotStatmentsFromRQSArray(reducedQueryStringArray);
+	outStr = outStr.replace(re3,"\n");
+	return outStr;
+}
+
+function countPlotStatmentsFromRQSArray(rqsArr){
+	var c = 0;
+	for(var i=0; i<rqsArr.length; i++){
+		if(rqsArr[i].indexOf('plot') > -1)c++;
+	}
+	return c;
+}
+
+function onThumbnailClick(event){
+	var rect = this.getBoundingClientRect();
+	var imgRect = this.childNodes[0].getBoundingClientRect();
+	var x = 0;
+	if(event.clientX > imgRect.left)x = (event.clientX - imgRect.left) + 5; 
+	var y = 0;
+	if(event.clientY > imgRect.top)y = event.clientY - imgRect.top; 
+	if(y > columnHt)y = columnHt;
+	cgiMod = "thumbnailImpl.cgi";
+	var prevChars = (Math.floor((x / (gutterWd + rasterLength)))) * (columnHt * rasterLength);
+	var curChars = y * rasterLength;
+	var offset = "&fileOffset=" + Math.round((prevChars + curChars)).toString(); 
+	var data = "viewFile=true" + "&myfilename=" + currentFile + offset;
+	doXmlAction(data);
+}
+
+function onCLPaneKeypress(event){
+	if(event.keyCode == 13){
+		var cl = document.getElementById('clPaneId');
+		processCommandString(cl.innerHTML);
+        	if (event.preventDefault)
+        	        event.preventDefault();
+		event.returnValue = false;    
+	}
+}
+
+function doXmlAction(str){
+    var xmlhttp;    
+    if (str==""){
+        document.getElementById("rsltDiv").innerHTML="";
+        return;
+    }
+    if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp=new XMLHttpRequest();
+    }
+    else {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function(){
+        if (xmlhttp.readyState==4 && xmlhttp.status==200){
+		if(xmlhttp.responseText.length > 0){
+			var rsltOb = {};
+			if(xmlhttp.responseText.indexOf('workableData') > -1){
+				rsltOb = JSON.parse(xmlhttp.responseText.trim());
+			}
+			if(cgiMod==='dotPlotImpl.cgi' || cgiMod === 'eventImpl.cgi'){
+				if(testArgs.length > 0){
+					cgiMod = "queryImpl.cgi";
+				}
+				else {
+					var elem = document.getElementById('rslt');
+					if(rsltOb.workableData !== undefined){
+						elem.innerHTML = rsltOb.workableData.status;
+					}
+					else elem.innerHTML = xmlhttp.responseText + '<br/>' + elem.innerHTML;
+					window.open(buildDocURL()); 
+				}
+			}
+			if(cgiMod==='thumbnailImpl.cgi'){
+				if(displayHttpResponse){
+					var elem = document.getElementById('rslt');
+					if(elem)elem.innerHTML = xmlhttp.responseText;
+				}
+				window.open(buildDocURL()); 
+				//window.open(buildDocURL(),"","scrollbars=yes,top=50,left=200,width=600,height=700");
+			}
+			if(cgiMod==='queryImpl.cgi'){
+				if(testArgs.length > 0){
+					var elem = document.getElementById('rslt');
+					if(elem)elem.innerHTML = xmlhttp.responseText;
+					testArgs = "";
+				}
+				else {
+					if(rsltOb.workableData === undefined)displayHttpResponse = true;
+					if(displayHttpResponse){
+						var warnMsg = "";
+						if(plotCount > 1 && basicDisplayMode !=='timeline')warnMsg = "<span class=\"warn\">Warning: 'plot' used more than once, this may cause some of the results to be hidden</span><br/>";
+						if(rsltOb.workableData === undefined)warnMsg = "bad query returned. Check the query syntax.";
+						var elem = document.getElementById('rslt');
+						if(elem)elem.innerHTML = warnMsg + "http response: " + xmlhttp.responseText;
+					}
+					loadImageBlocks(parseInt(rsltOb.workableData.blocks)); // xmlhttp.responseText.trim()));
+					loadDotPlots();
+					reloadTimeline(rsltOb.workableData.timelineData,rsltOb.workableData.timelineHint,rsltOb.workableData.keywordColors);
+				}
+			}
+			if(cgiMod==='cmdImpl.cgi'){
+				var elem = document.getElementById('rslt');
+				if(elem){
+					if(xmlhttp.responseText.length > 0)elem.innerHTML = "getting http response ...&lt;br/&gt;" + xmlhttp.responseText;
+					else elem.innerHTML = "received packet with no http responseText";
+				}
+				if(currentCmd==='done'){
+					if(elem)elem.innerHTML += rsltOb.workableData.status;
+				}
+				if(currentCmd==='setFilter'){
+					if(xmlhttp.responseText.indexOf("data is ready") > -1){
+						window.location.reload();
+					}
+					else { 
+						if(elem)elem.innerHTML += "\"data is ready\" not returned. " + xmlhttp.responseText;
+					}
+				}
+				if(currentCmd==='update'){
+					window.location.reload();	
+				}
+			}
+		}
+        }
+    }
+    xmlhttp.open("POST",cgiMod,true); 
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded","charset=UTF-8");
+    //xmlhttp.setRequestHeader("Content-length",str.length); //Chrome not allowing this
+    //xmlhttp.setRequestHeader("Connection", "close");
+    xmlhttp.send(str);
+}
+
+function buildDocURL(){
+	var s = "http://" + window.location.host + "/logwatcher/html/" + currentFile.replace(/\//g,"-") + ".html#clickTarget";
+	return s;
+}
+
+function loadHelp(){
+
+	var elem = document.getElementById("rslt");
+	if(elem)elem.innerHTML =
+		"commands:<br/><b>'test cgi query'</b> - determine if \'queryImpl.cgi\' is responsive<br/>" + 
+		" <b>'test cgi dotPlot'</b> - determine if \'queryImpl.cgi\' is responsive<br/>" +
+		" <b>'test java'</b> - to see if \'Luminator.jar\' is responsive<br/>" +
+		" <b>'test to disk'</b> - can we write to necessary directories<br/>" +
+		" <b>'test from disk'</b> - can we read from the necessary directories<br/>" +
+		" <b>'test open &lt;filename&gt;'</b> - can we read a specific file<br/>" +
+		" <b>'test regressions'</b> - run regression tests in module on the target machine<br/>";
+}
+
+function loadImageBlocks(count){
+	var pics = "";
+	var randomId = Math.random();
+	var host = window.location.host + "/";
+	for(var i=1; i<=count; i++){
+		pics += "<img src=\"http://" + host + imageDir + "f" + curFileNum.toString() + "_blk_" + i.toString() + ".png?" + randomId.toString() + "\"/>";
+	}
+	var img = document.getElementById('thumbnailInset');
+	if(img){
+		img.innerHTML = pics;
+		//thumbnailInset.width controls scrollbar
+		img.style.width = ((count + 1) * 12 * (gutterWd + rasterLength)).toString() + "px";
+	}	
+}
+
+function loadDotPlots(){
+	var kiosk = document.getElementById("kioskId");
+	var fdob = JSON.parse(fileData);
+	var randomId = Math.random();
+	for(var i=0; i<fdob.fileArr.length; i++){
+		var dpel = document.getElementById("dp" + i);
+		if(dpel===null){
+			alert("There has been an invalid dot-plot object. This" +
+			" page will need to reload. Sorry for any inconvenience!");
+			window.location.reload();
+			return;
+		}
+		dpel.innerHTML = fdob.fileArr[i].name + "<img src=\"" + imageDir + "dotPlot" + (i+1).toString() + ".png?" + randomId.toString() + "\"/>";
+	}
+}
+
+function reloadTimeline(newData,hint,colors){
+	//remove and/or bank old timeline stuff
+	bankAllEvents();
+
+	//mount new data
+	timelineData = newData;
+	timelineHint = hint;
+	keywordColors = colors;
+	
+	startData = null;
+
+	if(timelineData.length < 1){
+		var statPane = document.getElementById('rslt');
+		statPane.innerHTML = "No log data is available. Please see troubleshooting steps in readme.html";
+		return;
+	}
+
+	// parse eventData and determine time frame
+	prepEventData();
+
+	//position and format visible lines
+	//allocateAndSetHorizontalPosForTimeline();
+
+	//position event items
+	loadFilenamesAndRowElementsFromTimelineData();
+	updatePreciseTimelinePositions();
+	assignXPositionsToEvents(true);
+
+	//size the vertical bars and pane
+	setVerticalPosForTimeline();
+
+	//verify data and postion of events
+	//verifyEventDataAndPositions();
+
+
+}
+
+function appendTimeEvents(){
+
+}
+
+</script>
+</head>
+<body>
+<div id="nameplate">
+	<div class="nameplateTxt"><b>L o g W a t c h e r</b> - <i>v 1 . 1</i></div>
+</div>
+<div id="menuBtnId"></div>
+<div class="top">
+<div id="tlArea">
+	<div class="paneTitle">timeline-plots:</div>
+	<!-- <div class="currentThumbnail"></div> -->
+	<div class="kioskTLPane" id="wfrm">
+		<div class="lbframe" id="lfrm"></div>
+		<div id="bfrm"></div>
+	</div>
+</div>
+<div id="csArea">
+	<div class="paneTitle">dot-plots:</div>
+	<!-- <div class="currentThumbnail"></div> -->
+	<!-- <div class="kioskArea"> -->
+	<div>
+		<div class="kioskPane" id="kioskId">
+		</div>
+	</div>
+	<div class="thumbnailArea">
+		<div id="currentThumbnail"></div>
+		<div class="thumbnailPane">
+			<div id="thumbnailInset">
+			</div>
+		</div>
+	</div>
+</div>
+<div id="queryArea">
+	<div class="paneTitle">query:</div>
+	<!-- DO NOT INSERT NEWLINES INTO QUERY ELEMENT !! -->
+	<div class="queryPane" id="queryPaneId" contentEditable="true">%%currentQuery%%</div>
+</div>
+<div id="outputArea">
+	<div class="paneTitle">output:</div>
+	<div class="outputPane" id="rslt">
+%%pythonStatus%%
+	</div>
+</div>
+<div id="clArea">
+	<div class="paneTitle">commands:</div>
+	<div class="clPane" id="clPaneId" contentEditable="true"></div>
+</div>
+<div class="spacer">
+	.
+</div>
+<div id="linksPane">
+	<div class="btn" id="viewBtn">
+		<div class="link" id="l0">
+			<div class="linkTxt" id="lt0">show character stream</div>
+		</div>
+	</div>
+	<div class="btn" id="filterBtn">
+		<div class="link" id="l1">
+			<div class="linkTxt">file filter...</div>
+		</div>
+	</div>
+	<div class="btn" id="helpBtn">
+		<div class="link" id="l3">
+			<div class="linkTxt">help</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="dlg" id="filterDlgId">
+	<div class="dlgTitle"><div class="dlgTitleTxt">Edit file filter</div></div>
+	<div class="dlgContent">
+		<form id="filterFormId">
+			<input type="checkbox" id="b1" value="SystemOut.log">SystemOut.log</input><br/>
+			<input type="checkbox" id="b2" value="messages.log">messages.log</input><br/>
+			<input type="checkbox" id="b3" value="*.log">*.log</input><br/>
+			<input type="checkbox" id="b4" value="*.xml">*.xml</input><br/>
+			<input type="checkbox" id="b5" value="*.xsl">*.xsl</input><br/>
+			<input type="checkbox" id="b6" value="*.properties">*.properties</input><br/>
+			<input type="checkbox" id="b7" value="*.txt">*.txt</input><p/>
+			excluded filenames: <input type="text" id="excl" value=""></input><p/>	
+			<input type="button" id="dlgDoneBtnId" value="done"></input>
+			<input type="button" id="dlgEscBtnId" value="cancel"></input>
+		</form>
+	</div>	
+</div>
+</div>
+<div id="screenBlur"></div>
+</body>
+<script>
+init();
+</script>
+</html>
