@@ -1,0 +1,1 @@
+plot 'Exception' in red<br/>plot ' E ' in #ff9900<br/>frame 'open for e-business' in green<br/>frame 'run a smarter planet' in green
